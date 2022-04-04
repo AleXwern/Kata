@@ -6,7 +6,7 @@
 /*   By: alexwern <alexwern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 08:39:51 by alexwern          #+#    #+#             */
-/*   Updated: 2022/03/17 13:10:52 by alexwern         ###   ########.fr       */
+/*   Updated: 2022/04/04 08:58:06 by alexwern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 #define WORDWRAP_HPP
 
 extern "C" {
-    #include "libft_asm.h"
+#include "libft_asm.h"
 }
+#include <string>
 
 /*
 **  This is ugly I know
@@ -26,10 +27,7 @@ extern "C" {
 class Wrapper
 {
 public:
-    size_t  cutoff;
-    char    *clean;
-
-    void    wrapword(const char *str);
+    std::string     wrapword(const std::string str, size_t cutoff);
 };
 
 

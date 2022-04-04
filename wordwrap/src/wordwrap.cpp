@@ -6,35 +6,34 @@
 /*   By: alexwern <alexwern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 08:45:01 by alexwern          #+#    #+#             */
-/*   Updated: 2022/03/17 13:11:51 by alexwern         ###   ########.fr       */
+/*   Updated: 2022/04/04 13:55:06 by alexwern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wordwrap.hpp"
 #include <stdio.h>
 
-void        Wrapper::wrapword(const char *str)
+std::string     Wrapper::wrapword(const std::string str, size_t cutoff)
 {
-    size_t  pos = 0;
-    size_t  prevpos = 0;
-    size_t  space = 0;
+    std::string clean;
+    size_t      last = cutoff;
+    size_t      first = 0;
 
-    this->clean = ft_strdup(str);
-    while (this->clean[pos])
+    clean.assign(str);
+    while (1)
     {
-        if (this->clean[pos] != ' ')
+        first = last - cutoff;
+        for (; last > first; last--)
         {
-            pos++;
-            continue;
+            if (clean[last] == ' ')
+            {
+                clean[last] = '\n';
+                break;
+            }
+            else if (clean[last] == '\0')
+                return (clean);
         }
-        if (pos - prevpos >= this->cutoff)
-        {
-            DEBUGOUT("Cutoff at: %lu - %lu = %lu with %lu\n", pos, prevpos, pos-prevpos, space-prevpos);
-            this->clean[space] = '\n';
-            prevpos = space;
-        }
-        space = pos;
-        DEBUGOUT("Space set off: %lu\n", space-prevpos);
-        pos++;
+        printf("%lu\n", last);
+        last += cutoff + (last == first);
     }
 }
