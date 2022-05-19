@@ -6,7 +6,7 @@
 /*   By: alexwern <alexwern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 08:59:22 by alexwern          #+#    #+#             */
-/*   Updated: 2022/04/04 13:43:27 by alexwern         ###   ########.fr       */
+/*   Updated: 2022/04/06 07:58:29 by alexwern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,18 @@ TEST_CASE("5 and some characters long words", "[require]")
 TEST_CASE("4 and some characters long words", "[require]")
 {
     std::string str = wrap.wrapword("helo h helo h hello h hello h helo h h h hello hell hell hello hello hell hello", 5);
+    printf("String: %s\n", str.c_str());
+    REQUIRE(std::strchr(str.c_str(), '\n'));
+}
+
+TEST_CASE("Just spaces", "[require]")
+{
+    std::string str = wrap.wrapword("                                                                                   ", 5);
+    for (size_t i = 0; i < str.length(); i++)
+    {
+        if (str[i] == ' ')
+            str[i] = '*';
+    }
     printf("String: %s\n", str.c_str());
     REQUIRE(std::strchr(str.c_str(), '\n'));
 }

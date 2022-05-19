@@ -6,7 +6,7 @@
 /*   By: alexwern <alexwern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 08:45:01 by alexwern          #+#    #+#             */
-/*   Updated: 2022/04/04 13:55:06 by alexwern         ###   ########.fr       */
+/*   Updated: 2022/04/05 11:37:53 by alexwern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ std::string     Wrapper::wrapword(const std::string str, size_t cutoff)
             else if (clean[last] == '\0')
                 return (clean);
         }
-        printf("%lu\n", last);
-        last += cutoff + (last == first);
+        last += cutoff + 1;//(last == first);
     }
 }

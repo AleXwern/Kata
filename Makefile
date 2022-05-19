@@ -6,20 +6,20 @@
 #    By: alexwern <alexwern@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/01 10:42:05 by alexwern          #+#    #+#              #
-#    Updated: 2022/04/04 09:40:10 by alexwern         ###   ########.fr        #
+#    Updated: 2022/05/19 09:39:31 by alexwern         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= kata
-TESTS	= wordwrap_test.exe
+TESTS	= wordwrap_test.exe romannumerals_test.exe
 FLAG	= -m64 -no-pie
-SRCFILE	= wordwrap_test.cpp
+SRCFILE	= wordwrap_test.cpp romannumerals_test.cpp
 REALMAIN= obj/main.o
 TEST	= $(addprefix ./build/,$(TESTS))
 OBJ		= $(addprefix ./obj/,$(SRCFILE:.cpp=.o))
 CATCH	= obj/catch_amalgamated.o
 LIBFT	= Libft_ASM/Libft_ASM.a
-INCLS	= -I ./includes -I Libft_ASM -I ./tests -I */includes
+INCLS	= -I ./includes -I Libft_ASM -I ./tests -I wordwrap/includes -I romannumerals/includes
 GREEN	= \033[0;32m
 PURPLE	= \033[0;35m
 STOP	= \033[0m
