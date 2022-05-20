@@ -6,32 +6,49 @@
 /*   By: alexwern <alexwern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 11:06:15 by alexwern          #+#    #+#             */
-/*   Updated: 2022/05/19 09:33:13 by alexwern         ###   ########.fr       */
+/*   Updated: 2022/05/20 10:52:57 by alexwern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "romannumerals.h"
 
-const char romans[][3] = {"CM","D","CD","XC","L","XL","IX","V","IV"};
+const t_romans regex[] = {{"CM","DCCCC"}, {"CD","CCCC"}, {"XC","LXXXX"}, {"XL","XXXX"}, {"IX","VIIII"}, {"IV","IIII"}};
+const char romans[][2] = {"I","V","X","L","C","D","M"};
+const t_uint16 ints[] = {1,5,10,50,100,500,1000};
+
+static void     text_replace(char *roman, const char *str, int i)
+{
+    t_uint8     length = ((i & 1 == 0) ? 5 : 4);
+
+    memcpy(roman + (str - roman), regex[i].insert, 2);
+    memcpy(roman + (str - roman) + 2, str + length, ft_strlen(str + length) + 1);
+}
 
 char            *itor(t_uint16 num)
 {
-    char        *roman = malloc(16);
+    char        *roman = (char*)malloc(16);
+    char        *str;
     t_uint16    curlength = 0;
 	t_uint16	maxlength = 16;
 
+    roman[0] = '\0';
     while (num)
     {
-		if (num >= 1)
-        {
-            strcat(roman + curlength, "I");
-            curlength++;
-        }
-        if (curlength > maxlength - 2)
+        t_uint8 bits = (num >= 1000) + (num >= 500) + (num >= 100) + (num >= 50) + (num >= 10) + (num >= 5) + (num >= 1) - 1;
+
+        memcpy(roman + curlength, romans[bits], 2);
+        curlength++;
+        num -= ints[bits];
+        if (curlength > maxlength - 3)
         {
             maxlength += 16;
             roman = realloc(roman, maxlength);
         }
     }
-	return (roman);
+    for (int i = 0; i < sizeof(regex) / sizeof(t_romans); i++)
+    {
+        while (str = ft_strstr(roman, regex[i].needle)) //Unsure if this can ever run >1 times
+            text_replace(roman, str, i);
+    }
+    return (realloc(roman, ft_strlen(roman) + 1));
 }

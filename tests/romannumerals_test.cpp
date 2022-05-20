@@ -6,7 +6,7 @@
 /*   By: alexwern <alexwern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 11:09:42 by alexwern          #+#    #+#             */
-/*   Updated: 2022/05/19 09:38:01 by alexwern         ###   ########.fr       */
+/*   Updated: 2022/05/20 10:54:39 by alexwern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@ extern "C" {
 #include "romannumerals.h"
 }
 #include "catch_amalgamated.hpp"
-#include <stdio.h>
 
 TEST_CASE("Zero", "[require]")
 {
