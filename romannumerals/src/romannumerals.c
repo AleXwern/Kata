@@ -6,19 +6,19 @@
 /*   By: alexwern <alexwern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 11:06:15 by alexwern          #+#    #+#             */
-/*   Updated: 2022/05/20 10:52:57 by alexwern         ###   ########.fr       */
+/*   Updated: 2022/05/27 13:44:28 by alexwern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "romannumerals.h"
 
 const t_romans regex[] = {{"CM","DCCCC"}, {"CD","CCCC"}, {"XC","LXXXX"}, {"XL","XXXX"}, {"IX","VIIII"}, {"IV","IIII"}};
-const char romans[][2] = {"I","V","X","L","C","D","M"};
-const t_uint16 ints[] = {1,5,10,50,100,500,1000};
+const char romans[] = {'I','V','X','L','C','D','M'};
+const t_uint16 ints[] = {1, 5, 10, 50, 100, 500, 1000, 900, 400, 90, 40, 9, 4};
 
 static void     text_replace(char *roman, const char *str, int i)
 {
-    t_uint8     length = ((i & 1 == 0) ? 5 : 4);
+    t_uint8     length = ((i % 2 == 0) ? 5 : 4);
 
     memcpy(roman + (str - roman), regex[i].insert, 2);
     memcpy(roman + (str - roman) + 2, str + length, ft_strlen(str + length) + 1);
@@ -36,10 +36,10 @@ char            *itor(t_uint16 num)
     {
         t_uint8 bits = (num >= 1000) + (num >= 500) + (num >= 100) + (num >= 50) + (num >= 10) + (num >= 5) + (num >= 1) - 1;
 
-        memcpy(roman + curlength, romans[bits], 2);
+        roman[curlength] = romans[bits];
         curlength++;
         num -= ints[bits];
-        if (curlength > maxlength - 3)
+        if (curlength >= maxlength)
         {
             maxlength += 16;
             roman = realloc(roman, maxlength);

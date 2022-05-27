@@ -6,13 +6,13 @@
 #    By: alexwern <alexwern@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/17 08:34:28 by alexwern          #+#    #+#              #
-#    Updated: 2022/05/19 09:43:38 by alexwern         ###   ########.fr        #
+#    Updated: 2022/05/27 13:26:43 by alexwern         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= romannumerals.exe
 FLAG	= -m64 -no-pie
-SRCFILE	= main.c romannumerals.c
+SRCFILE	= main.c romannumerals.c rtoi.c
 OBJ		= $(addprefix ./obj/,$(SRCFILE:.c=.o))
 LIBFT	= ../Libft_ASM/Libft_ASM.a
 INCLS	= -I ./includes -I ../Libft_ASM -I ./tests
