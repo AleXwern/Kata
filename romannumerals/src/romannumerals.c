@@ -6,7 +6,7 @@
 /*   By: alexwern <alexwern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 11:06:15 by alexwern          #+#    #+#             */
-/*   Updated: 2022/06/03 09:50:02 by alexwern         ###   ########.fr       */
+/*   Updated: 2022/06/03 11:43:49 by alexwern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ char            *itor(t_uint16 num)
     t_uint16    curlength = 0;
 	t_uint16	maxlength = 16;
 
-    roman[0] = '\0';
     while (num)
     {
         t_uint8 bits = (num >= 1000) + (num >= 500) + (num >= 100) + (num >= 50) + (num >= 10) + (num >= 5) + (num >= 1) - 1;
@@ -45,6 +44,7 @@ char            *itor(t_uint16 num)
             roman = realloc(roman, maxlength);
         }
     }
+    roman[curlength] = '\0';
     for (size_t i = 0; i < sizeof(regex) / sizeof(t_romans); i++)
     {
         while ((str = ft_strstr(roman, regex[i].needle))) //Unsure if this can ever run >1 times
