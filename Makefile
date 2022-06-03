@@ -6,13 +6,13 @@
 #    By: alexwern <alexwern@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/01 10:42:05 by alexwern          #+#    #+#              #
-#    Updated: 2022/05/19 09:46:01 by alexwern         ###   ########.fr        #
+#    Updated: 2022/06/03 09:46:42 by alexwern         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= kata
 TESTS	= wordwrap_test.exe romannumerals_test.exe
-FLAG	= -m64 -no-pie
+FLAG	= -m64 -no-pie -Wall -Wextra -Werror
 SRCFILE	= wordwrap_test.cpp romannumerals_test.cpp
 REALMAIN= obj/main.o
 TEST	= $(addprefix ./build/,$(TESTS))
@@ -31,35 +31,37 @@ all: $(NAME)
 
 ./obj/%.o:./tests/%.cpp
 	@mkdir -p obj
-	g++ $(FLAG) -c $< -o $@ $(INCLS)
+	@g++ $(FLAG) -c $< -o $@ $(INCLS)
 
 ./build/%.exe:./obj/%.o
 	@mkdir -p build
-	g++ $(FLAG) -o $@ $(INCLS) $< $(addprefix $(subst obj/,,$(subst _test.o,,$<))/,$(subst _test,,$<)) $(CATCH) $(LIBFT)
+	@g++ $(FLAG) -o $@ $(INCLS) $< $(addprefix $(subst obj/,,$(subst _test.o,,$<))/,$(subst _test,,$<)) $(CATCH) $(LIBFT)
 
 $(LIBFT):
 	@echo Compiling Libft libraries.
 	@make -C Libft_ASM
 
 katas:
-	make -C wordwrap all
-	make -C romannumerals all
+	@make -C wordwrap all
+	@make -C romannumerals all
 
 $(NAME): $(LIBFT) $(CATCH) $(OBJ) katas
 	@mkdir -p build
-	g++ $(FLAG) -o build/wordwrap_test.exe $(INCLS) obj/wordwrap_test.o wordwrap/obj/wordwrap.o $(CATCH) $(LIBFT)
-	g++ $(FLAG) -o build/romannumerals_test.exe $(INCLS) obj/romannumerals_test.o romannumerals/obj/romannumerals.o $(CATCH) $(LIBFT)
+	@g++ $(FLAG) -o build/wordwrap_test.exe $(INCLS) obj/wordwrap_test.o wordwrap/obj/wordwrap.o $(CATCH) $(LIBFT)
+	@g++ $(FLAG) -o build/romannumerals_test.exe $(INCLS) obj/romannumerals_test.o romannumerals/obj/romannumerals.o $(CATCH) $(LIBFT)
 
 clean:
-	/bin/rm -f $(OBJ)
-	/bin/rm -rf ./obj
-	make -C Libft_ASM clean
-	make -C wordwrap clean
-	make -C romannumerals clean
+	@/bin/rm -f $(OBJ)
+	@/bin/rm -rf ./obj
+	@make -C Libft_ASM clean
+	@make -C ft_malloc clean
+	@make -C wordwrap clean
+	@make -C romannumerals clean
 
 fclean: clean
-	make -C Libft_ASM fclean
-	make -C wordwrap fclean
-	make -C romannumerals fclean
+	@make -C Libft_ASM fclean
+	@make -C ft_malloc fclean
+	@make -C wordwrap fclean
+	@make -C romannumerals fclean
 
 re: fclean all

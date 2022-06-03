@@ -6,7 +6,7 @@
 /*   By: alexwern <alexwern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 11:06:15 by alexwern          #+#    #+#             */
-/*   Updated: 2022/05/27 13:44:28 by alexwern         ###   ########.fr       */
+/*   Updated: 2022/06/03 09:50:02 by alexwern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 const t_romans regex[] = {{"CM","DCCCC"}, {"CD","CCCC"}, {"XC","LXXXX"}, {"XL","XXXX"}, {"IX","VIIII"}, {"IV","IIII"}};
 const char romans[] = {'I','V','X','L','C','D','M'};
-const t_uint16 ints[] = {1, 5, 10, 50, 100, 500, 1000, 900, 400, 90, 40, 9, 4};
+const t_uint16 ints[] = {1, 5, 10, 50, 100, 500, 1000, 4, 9, 40, 90, 400, 900};
 
 static void     text_replace(char *roman, const char *str, int i)
 {
@@ -45,9 +45,9 @@ char            *itor(t_uint16 num)
             roman = realloc(roman, maxlength);
         }
     }
-    for (int i = 0; i < sizeof(regex) / sizeof(t_romans); i++)
+    for (size_t i = 0; i < sizeof(regex) / sizeof(t_romans); i++)
     {
-        while (str = ft_strstr(roman, regex[i].needle)) //Unsure if this can ever run >1 times
+        while ((str = ft_strstr(roman, regex[i].needle))) //Unsure if this can ever run >1 times
             text_replace(roman, str, i);
     }
     return (realloc(roman, ft_strlen(roman) + 1));
