@@ -6,7 +6,7 @@
 #    By: alexwern <alexwern@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/01 10:42:05 by alexwern          #+#    #+#              #
-#    Updated: 2022/06/03 09:46:42 by alexwern         ###   ########.fr        #
+#    Updated: 2022/06/03 10:44:57 by alexwern         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ all: $(NAME)
 $(LIBFT):
 	@echo Compiling Libft libraries.
 	@make -C Libft_ASM
+	@make -C ft_malloc
 
 katas:
 	@make -C wordwrap all
@@ -59,6 +60,7 @@ clean:
 	@make -C romannumerals clean
 
 fclean: clean
+	@/bin/rm -rf ./build
 	@make -C Libft_ASM fclean
 	@make -C ft_malloc fclean
 	@make -C wordwrap fclean
