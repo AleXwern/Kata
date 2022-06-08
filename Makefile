@@ -6,7 +6,7 @@
 #    By: alexwern <alexwern@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/01 10:42:05 by alexwern          #+#    #+#              #
-#    Updated: 2022/06/03 10:44:57 by alexwern         ###   ########.fr        #
+#    Updated: 2022/06/06 10:02:19 by alexwern         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,7 @@ $(LIBFT):
 katas:
 	@make -C wordwrap all
 	@make -C romannumerals all
+	@make -C primefactors all
 
 $(NAME): $(LIBFT) $(CATCH) $(OBJ) katas
 	@mkdir -p build
@@ -58,6 +59,7 @@ clean:
 	@make -C ft_malloc clean
 	@make -C wordwrap clean
 	@make -C romannumerals clean
+	@make -C primefactors clean
 
 fclean: clean
 	@/bin/rm -rf ./build
@@ -65,5 +67,6 @@ fclean: clean
 	@make -C ft_malloc fclean
 	@make -C wordwrap fclean
 	@make -C romannumerals fclean
+	@make -C primefactors fclean
 
 re: fclean all
