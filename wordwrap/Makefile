@@ -6,7 +6,7 @@
 #    By: alexwern <alexwern@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/17 08:34:28 by alexwern          #+#    #+#              #
-#    Updated: 2022/06/03 09:46:53 by alexwern         ###   ########.fr        #
+#    Updated: 2022/06/09 13:41:21 by alexwern         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,14 +26,17 @@ STOP	= \033[0m
 all: $(NAME)
 
 ./obj/%.o:./src/%.cpp
+	@echo "Compiling $(GREEN)$@$(STOP)"
 	@mkdir -p obj
 	@g++ $(FLAG) -c $< -o $@ $(INCLS)
 
 ./obj/%.o:./src/%.c
+	@echo "Compiling $(GREEN)$@$(STOP)"
 	@mkdir -p obj
 	@gcc $(FLAG) -c $< -o $@ $(INCLS)
 
 $(NAME): $(OBJ)
+	@echo "Building $(PURPLE)$(NAME)$(STOP)"
 	@g++ $(FLAG) -o $(NAME) $(INCLS) $(OBJ) $(LIBFT)
 
 clean:

@@ -6,7 +6,7 @@
 #    By: alexwern <alexwern@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/01 10:42:05 by alexwern          #+#    #+#              #
-#    Updated: 2022/06/09 12:48:26 by alexwern         ###   ########.fr        #
+#    Updated: 2022/06/09 13:39:57 by alexwern         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,19 +30,21 @@ TEMP0	= 0
 all: $(NAME)
 
 ./obj/%.o:./tests/%.cpp
+	@echo "Compiling $(GREEN)$@$(STOP)"
 	@mkdir -p obj
 	@g++ $(FLAG) -c $< -o $@ $(INCLS)
 
 $(CATCH):
+	@echo "Compiling $(GREEN)catch_amalgamated.o$(STOP)"
 	@mkdir -p obj
 	@g++ $(FLAG) -c ./catch2/extras/catch_amalgamated.cpp -o $(CATCH) $(INCLS)
 
 ./build/%.exe:./obj/%.o
+	@echo "Compiling $(GREEN)$@$(STOP)"
 	@mkdir -p build
 	@g++ $(FLAG) -o $@ $(INCLS) $< $(addprefix $(subst obj/,,$(subst _test.o,,$<))/,$(subst _test,,$<)) $(CATCH) $(LIBFT)
 
 $(LIBFT):
-	@echo Compiling Libft libraries.
 	@make -C Libft_ASM
 	@make -C ft_malloc
 
@@ -52,6 +54,7 @@ katas:
 	@make -C primefactors all
 
 $(NAME): $(LIBFT) $(CATCH) $(OBJ) katas
+	@echo "Building unit tests"
 	@mkdir -p build
 	@g++ $(FLAG) -o build/wordwrap_test.exe $(INCLS) obj/wordwrap_test.o wordwrap/obj/wordwrap.o $(CATCH) $(LIBFT)
 	@g++ $(FLAG) -o build/romannumerals_test.exe $(INCLS) obj/romannumerals_test.o romannumerals/obj/romannumerals.o $(CATCH) $(LIBFT)
