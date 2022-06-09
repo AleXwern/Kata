@@ -4,3 +4,6 @@
 [submodule "ft_malloc"]
 	path = ft_malloc
 	url = git@github.com:AleXwern/ft_malloc.git
+[submodule "catch2"]
+	path = catch2
+	url = ./catch2
