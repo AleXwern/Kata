@@ -6,20 +6,20 @@
 #    By: alexwern <alexwern@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/01 10:42:05 by alexwern          #+#    #+#              #
-#    Updated: 2022/06/06 10:02:19 by alexwern         ###   ########.fr        #
+#    Updated: 2022/06/09 12:48:26 by alexwern         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= kata
-TESTS	= wordwrap_test.exe romannumerals_test.exe
+TESTS	= wordwrap_test.exe romannumerals_test.exe primefactors_test.exe
 FLAG	= -m64 -no-pie -Wall -Wextra -Werror
-SRCFILE	= wordwrap_test.cpp romannumerals_test.cpp
+SRCFILE	= wordwrap_test.cpp romannumerals_test.cpp primefactors_test.cpp
 REALMAIN= obj/main.o
 TEST	= $(addprefix ./build/,$(TESTS))
 OBJ		= $(addprefix ./obj/,$(SRCFILE:.cpp=.o))
 CATCH	= obj/catch_amalgamated.o
 LIBFT	= Libft_ASM/Libft_ASM.a
-INCLS	= -I ./includes -I Libft_ASM -I ./tests -I wordwrap/includes -I romannumerals/includes
+INCLS	= -I ./includes -I Libft_ASM -I ./tests -I wordwrap/includes -I romannumerals/includes -I primefactors/includes -I catch2/extras
 GREEN	= \033[0;32m
 PURPLE	= \033[0;35m
 STOP	= \033[0m
@@ -32,6 +32,10 @@ all: $(NAME)
 ./obj/%.o:./tests/%.cpp
 	@mkdir -p obj
 	@g++ $(FLAG) -c $< -o $@ $(INCLS)
+
+$(CATCH):
+	@mkdir -p obj
+	@g++ $(FLAG) -c ./catch2/extras/catch_amalgamated.cpp -o $(CATCH) $(INCLS)
 
 ./build/%.exe:./obj/%.o
 	@mkdir -p build
@@ -51,6 +55,7 @@ $(NAME): $(LIBFT) $(CATCH) $(OBJ) katas
 	@mkdir -p build
 	@g++ $(FLAG) -o build/wordwrap_test.exe $(INCLS) obj/wordwrap_test.o wordwrap/obj/wordwrap.o $(CATCH) $(LIBFT)
 	@g++ $(FLAG) -o build/romannumerals_test.exe $(INCLS) obj/romannumerals_test.o romannumerals/obj/romannumerals.o $(CATCH) $(LIBFT)
+	@g++ $(FLAG) -o build/primefactors_test.exe $(INCLS) obj/primefactors_test.o primefactors/obj/primefactors.o $(CATCH) $(LIBFT)
 
 clean:
 	@/bin/rm -f $(OBJ)
