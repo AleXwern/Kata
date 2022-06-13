@@ -6,7 +6,7 @@
 /*   By: alexwern <alexwern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 08:39:51 by alexwern          #+#    #+#             */
-/*   Updated: 2022/04/04 08:58:06 by alexwern         ###   ########.fr       */
+/*   Updated: 2022/06/13 12:01:12 by alexwern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #define WORDWRAP_HPP
 
 extern "C" {
-#include "libft_asm.h"
+#include "libft.h"
 }
 #include <string>
 

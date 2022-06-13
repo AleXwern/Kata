@@ -6,7 +6,7 @@
 #    By: alexwern <alexwern@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/17 08:34:28 by alexwern          #+#    #+#              #
-#    Updated: 2022/06/09 13:40:45 by alexwern         ###   ########.fr        #
+#    Updated: 2022/06/13 12:05:05 by alexwern         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,8 @@ FLAG	= -m64 -no-pie -Wall -Wextra -Werror
 SRCFILE	= primefactors.cpp main.cpp
 SRC		= $(addprefix ./src/,$(SRCFILE))
 OBJ		= $(addprefix ./obj/,$(SRCFILE:.cpp=.o))
-LIBFT	= ../Libft_ASM/Libft_ASM.a
-INCLS	= -I ./includes -I ../Libft_ASM -I ./tests
+LIBFT	= -L ../Libft/build -lft
+INCLS	= -I ./includes -I ../Libft/includes -I ./tests
 GREEN	= \033[0;32m
 PURPLE	= \033[0;35m
 STOP	= \033[0m

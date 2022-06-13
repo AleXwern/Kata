@@ -6,7 +6,7 @@
 #    By: alexwern <alexwern@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/01 10:42:05 by alexwern          #+#    #+#              #
-#    Updated: 2022/06/09 13:39:57 by alexwern         ###   ########.fr        #
+#    Updated: 2022/06/13 13:04:06 by alexwern         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,8 +18,8 @@ REALMAIN= obj/main.o
 TEST	= $(addprefix ./build/,$(TESTS))
 OBJ		= $(addprefix ./obj/,$(SRCFILE:.cpp=.o))
 CATCH	= obj/catch_amalgamated.o
-LIBFT	= Libft_ASM/Libft_ASM.a
-INCLS	= -I ./includes -I Libft_ASM -I ./tests -I wordwrap/includes -I romannumerals/includes -I primefactors/includes -I catch2/extras
+LIBFT	= -L ./Libft/build -lft
+INCLS	= -I ./includes -I Libft/includes -I ./tests -I wordwrap/includes -I romannumerals/includes -I primefactors/includes -I catch2/extras
 GREEN	= \033[0;32m
 PURPLE	= \033[0;35m
 STOP	= \033[0m
@@ -45,8 +45,7 @@ $(CATCH):
 	@g++ $(FLAG) -o $@ $(INCLS) $< $(addprefix $(subst obj/,,$(subst _test.o,,$<))/,$(subst _test,,$<)) $(CATCH) $(LIBFT)
 
 $(LIBFT):
-	@make -C Libft_ASM
-	@make -C ft_malloc
+	@make -C Libft
 
 katas:
 	@make -C wordwrap all
@@ -63,16 +62,14 @@ $(NAME): $(LIBFT) $(CATCH) $(OBJ) katas
 clean:
 	@/bin/rm -f $(OBJ)
 	@/bin/rm -rf ./obj
-	@make -C Libft_ASM clean
-	@make -C ft_malloc clean
+	@make -C Libft clean
 	@make -C wordwrap clean
 	@make -C romannumerals clean
 	@make -C primefactors clean
 
 fclean: clean
 	@/bin/rm -rf ./build
-	@make -C Libft_ASM fclean
-	@make -C ft_malloc fclean
+	@make -C Libft fclean
 	@make -C wordwrap fclean
 	@make -C romannumerals fclean
 	@make -C primefactors fclean

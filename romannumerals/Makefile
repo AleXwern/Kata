@@ -6,7 +6,7 @@
 #    By: alexwern <alexwern@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/17 08:34:28 by alexwern          #+#    #+#              #
-#    Updated: 2022/06/03 09:46:47 by alexwern         ###   ########.fr        #
+#    Updated: 2022/06/13 12:04:57 by alexwern         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,8 @@ NAME	= romannumerals.exe
 FLAG	= -m64 -no-pie -Wall -Wextra -Werror
 SRCFILE	= main.c romannumerals.c rtoi.c
 OBJ		= $(addprefix ./obj/,$(SRCFILE:.c=.o))
-LIBFT	= ../Libft_ASM/Libft_ASM.a
-INCLS	= -I ./includes -I ../Libft_ASM -I ./tests
+LIBFT	= -L ../Libft/build -lft
+INCLS	= -I ./includes -I ../Libft/includes -I ./tests
 GREEN	= \033[0;32m
 PURPLE	= \033[0;35m
 STOP	= \033[0m
