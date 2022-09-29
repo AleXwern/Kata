@@ -1,0 +1,65 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    katatop                                            :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: alexwern <alexwern@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/04/01 10:42:05 by alexwern          #+#    #+#              #
+#    Updated: 2022/09/16 12:42:54 by alexwern         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME	= kata
+TESTS	= {0}
+FLAG	= -m64 -no-pie -Wall -Wextra -Werror -std=c++17 -g
+SRCFILE	= {1}
+REALMAIN= obj/main.o
+TEST	= $(addprefix ./build/,$(TESTS))
+OBJ		= $(addprefix ./obj/,$(SRCFILE:.cpp=.o))
+CATCH	= obj/catch_amalgamated.o
+LIBFT	= -L ./Libft/build -lft
+INCLS	= -I ./includes -I Libft/includes -I ./tests {2}-I catch2/extras
+GREEN	= \033[0;32m
+PURPLE	= \033[0;35m
+STOP	= \033[0m
+TEMP0	= 0
+
+.PHONY: all clean fclean re
+
+all: $(NAME)
+
+./obj/%.o:./tests/%.cpp
+	@echo "Compiling $(GREEN)$@$(STOP)"
+	@mkdir -p obj
+	@g++ $(FLAG) -c $< -o $@ $(INCLS)
+
+$(CATCH):
+	@echo "Compiling $(GREEN)catch_amalgamated.o$(STOP)"
+	@mkdir -p obj
+	@g++ $(FLAG) -c ./catch2/extras/catch_amalgamated.cpp -o $(CATCH) $(INCLS)
+
+./build/%.exe:./obj/%.o
+	@echo "Compiling $(GREEN)$@$(STOP)"
+	@mkdir -p build
+	@g++ $(FLAG) -o $@ $(INCLS) $< $(addprefix $(subst obj/,,$(subst _test.o,,$<))/,$(subst _test,,$<)) $(CATCH) $(LIBFT)
+
+$(LIBFT):
+	@make -C Libft
+
+katas:
+{3}
+$(NAME): $(LIBFT) $(CATCH) $(OBJ) katas
+	@echo "Building unit tests"
+	@mkdir -p build
+{4}
+clean:
+	@/bin/rm -f $(OBJ)
+	@/bin/rm -rf ./obj
+	@make -C Libft clean
+{5}
+fclean: clean
+	@/bin/rm -rf ./build
+	@make -C Libft fclean
+{6}
+re: fclean all
