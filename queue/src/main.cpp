@@ -10,7 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "queue2.hpp"
+
 int     main(void)
 {
-    return (0);
+	Queue<double> jono;
+
+	for (int i; i < 0x1fff; i++)
+		jono.push(i);
+	printf("Things %f and %f\n", jono.front(), jono.back());
+	return (0);
 }

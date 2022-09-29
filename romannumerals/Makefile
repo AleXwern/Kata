@@ -1,18 +1,19 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
+#    katasub                                            :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: alexwern <alexwern@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/17 08:34:28 by alexwern          #+#    #+#              #
-#    Updated: 2022/06/13 12:04:57 by alexwern         ###   ########.fr        #
+#    Updated: 2022/09/16 13:17:03 by alexwern         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+#0 = name of the project, 1 = sources
 NAME	= romannumerals.exe
 FLAG	= -m64 -no-pie -Wall -Wextra -Werror
-SRCFILE	= main.c romannumerals.c rtoi.c
+SRCFILE	= main.c romannumerals.c rtoi.c 
 OBJ		= $(addprefix ./obj/,$(SRCFILE:.c=.o))
 LIBFT	= -L ../Libft/build -lft
 INCLS	= -I ./includes -I ../Libft/includes -I ./tests

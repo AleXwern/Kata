@@ -5,13 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/29 09:56:01 by marvin            #+#    #+#             */
+/*   Created: 2022/08/29 09:56:01 by marvin            #+ #    #+#             */
 /*   Updated: 2022/08/29 09:56:01 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "catch_amalgamated.hpp"
-#include "queue.hpp"
+#include "queue2.hpp"
 
 TEST_CASE("Empty", "[require]")
 {

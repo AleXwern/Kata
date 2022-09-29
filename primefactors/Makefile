@@ -1,19 +1,19 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
+#    katasub                                            :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: alexwern <alexwern@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/17 08:34:28 by alexwern          #+#    #+#              #
-#    Updated: 2022/06/13 12:05:05 by alexwern         ###   ########.fr        #
+#    Updated: 2022/09/16 13:17:03 by alexwern         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+#0 = name of the project, 1 = sources
 NAME	= primefactors.exe
 FLAG	= -m64 -no-pie -Wall -Wextra -Werror
-SRCFILE	= primefactors.cpp main.cpp
-SRC		= $(addprefix ./src/,$(SRCFILE))
+SRCFILE	= main.cpp primefactors.cpp 
 OBJ		= $(addprefix ./obj/,$(SRCFILE:.cpp=.o))
 LIBFT	= -L ../Libft/build -lft
 INCLS	= -I ./includes -I ../Libft/includes -I ./tests
@@ -28,7 +28,7 @@ all: $(NAME)
 ./obj/%.o:./src/%.cpp
 	@echo "Compiling $(GREEN)$@$(STOP)"
 	@mkdir -p obj
-	@g++ $(FLAG) -c $< -o $@ $(INCLS) -lfmt
+	@g++ $(FLAG) -c $< -o $@ $(INCLS)
 
 ./obj/%.o:./src/%.c
 	@echo "Compiling $(GREEN)$@$(STOP)"
@@ -36,8 +36,8 @@ all: $(NAME)
 	@gcc $(FLAG) -c $< -o $@ $(INCLS)
 
 $(NAME): $(OBJ)
-	@echo "Building $(PURPLE)$(NAME)$(STOP)"
-	@g++ $(FLAG) -o $(NAME) $(INCLS) $(OBJ) $(LIBFT) -lfmt
+	@echo "Building $(PURPLE)$@$(STOP)"
+	@gcc $(FLAG) -o $(NAME) $(INCLS) $(OBJ) $(LIBFT)
 
 clean:
 	@/bin/rm -f $(OBJ)
