@@ -15,11 +15,12 @@ NAME	= primefactors.exe
 FLAG	= -m64 -no-pie -Wall -Wextra -Werror
 SRCFILE	= main.cpp primefactors.cpp 
 OBJ		= $(addprefix ./obj/,$(SRCFILE:.cpp=.o))
-LIBFT	= -L ../Libft/build -lft
+LIBFT	= -L ../Libft/build -lft -lfmt
 INCLS	= -I ./includes -I ../Libft/includes -I ./tests
 GREEN	= \033[0;32m
 PURPLE	= \033[0;35m
 STOP	= \033[0m
+GCC		= g++
 
 .PHONY: all clean fclean re
 
@@ -37,7 +38,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@echo "Building $(PURPLE)$@$(STOP)"
-	@gcc $(FLAG) -o $(NAME) $(INCLS) $(OBJ) $(LIBFT)
+	@$(GCC) $(FLAG) -o $(NAME) $(INCLS) $(OBJ) $(LIBFT)
 
 clean:
 	@/bin/rm -f $(OBJ)

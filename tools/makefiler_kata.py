@@ -46,13 +46,15 @@ def create_main_makefile():
 def create_sub_makefile(name):
 	if '.cpp' in os.walk('./{}/src'.format(name)).next()[2][0]:
 		ext = '.cpp'
+		gcc = 'g++'
 	else:
 		ext = '.c'
+		gcc = 'gcc'
 	files = ''
 	for src in os.walk('./{}/src'.format(name)).next()[2]:
 		files += src + ' '
 	makefile = open("{0}/../{1}/Makefile".format(sys.path[0], name), "w")
-	makefile.write(sub.format(name, files, ext))
+	makefile.write(sub.format(name, files, ext, gcc))
 	makefile.close()
 
 def	main():
