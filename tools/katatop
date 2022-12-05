@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    katatop                                            :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: alexwern <alexwern@student.42.fr>          +#+  +:+       +#+         #
+#    By: AleXwern <alex.nystrom5@gmail.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/01 10:42:05 by alexwern          #+#    #+#              #
-#    Updated: 2022/09/16 12:42:54 by alexwern         ###   ########.fr        #
+#    Updated: 2022/11/21 14:18:45 by AleXwern         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ $(CATCH):
 ./build/%.exe:./obj/%.o
 	@echo "Compiling $(GREEN)$@$(STOP)"
 	@mkdir -p build
-	@g++ $(FLAG) -o $@ $(INCLS) $< $(addprefix $(subst obj/,,$(subst _test.o,,$<))/,$(subst _test,,$<)) $(CATCH) $(LIBFT)
+	@g++ $(FLAG) -o $@ $(INCLS) -DREAL_MAIN=1 $< $(addprefix $(subst obj/,,$(subst _test.o,,$<))/,$(subst _test,,$<)) $(CATCH) $(LIBFT)
 
 $(LIBFT):
 	@make -C Libft

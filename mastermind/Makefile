@@ -11,9 +11,9 @@
 # **************************************************************************** #
 
 #0 = name of the project, 1 = sources
-NAME	= movierental.exe
+NAME	= mastermind.exe
 FLAG	= -m64 -no-pie -Wall -Wextra -Werror
-SRCFILE	= Customer.cpp main.cpp Movie.cpp movierental.cpp Rental.cpp 
+SRCFILE	= main.cpp mastermind.cpp 
 OBJ		= $(addprefix ./obj/,$(SRCFILE:.cpp=.o))
 LIBFT	= -L ../Libft/build -lft -lfmt
 INCLS	= -I ./includes -I ../Libft/includes -I ./tests

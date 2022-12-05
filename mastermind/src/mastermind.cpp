@@ -1,16 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   mastermind.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: AleXwern <alex.nystrom5@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/21 14:15:25 by AleXwern          #+#    #+#             */
-/*   Updated: 2022/11/21 14:19:52 by AleXwern         ###   ########.fr       */
+/*   Created: 2022/11/22 10:11:29 by AleXwern          #+#    #+#             */
+/*   Updated: 2022/12/05 09:03:57 by AleXwern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int main(void)
+#include "mastermind.hpp"
+
+Mastermind::Mastermind(char c1 = empty,
+                        char c2 = empty,
+                        char c3 = empty,
+                        char c4 = empty)
 {
-    return 0;
+    colours[0] = c1;
+    colours[1] = c2;
+    colours[2] = c3;
+    colours[3] = c4;
+}
+
+Mastermind::~Mastermind(void)
+{
 }

@@ -1,6 +1,6 @@
 // Copyright (c) 2021 Antero Nousiainen
 
-#include "Customer.hpp"
+#include "movierental.hpp"
 
 namespace kata
 {
@@ -24,12 +24,13 @@ namespace kata
     {
         double totalAmount = 0;
         int frequentRenterPoints = 0;
-        std::vector<Rental*>::iterator rentals = this->rentals.begin();
         std::string result = "Rental Record for " + getName() + "\n";
-        while (rentals != this->rentals.end())
+        for (std::vector<Rental*>::iterator rentals = this->rentals.begin();
+            rentals != this->rentals.end();
+            rentals++)
         {
             double thisAmount = 0;
-            Rental * each = *rentals++;
+            Rental * each = *rentals;
             // determines the amount for each line
             switch (each->getMovie()->getPriceCode())
             {

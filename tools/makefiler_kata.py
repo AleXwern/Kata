@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    makefiler_kata.py                                  :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: alexwern <alexwern@student.42.fr>          +#+  +:+       +#+         #
+#    By: AleXwern <alex.nystrom5@gmail.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/12 09:09:34 by alexwern          #+#    #+#              #
-#    Updated: 2022/09/16 13:18:06 by alexwern         ###   ########.fr        #
+#    Updated: 2022/11/21 14:22:54 by AleXwern         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 

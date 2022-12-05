@@ -1,6 +1,6 @@
 // Copyright (c) 2021 Antero Nousiainen
 
-#include "Rental.hpp"
+#include "movierental.hpp"
 
 namespace kata
 {

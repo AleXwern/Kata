@@ -1,16 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   mastermind_test.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: AleXwern <alex.nystrom5@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/21 14:15:25 by AleXwern          #+#    #+#             */
-/*   Updated: 2022/11/21 14:19:52 by AleXwern         ###   ########.fr       */
+/*   Created: 2022/11/21 14:26:50 by AleXwern          #+#    #+#             */
+/*   Updated: 2022/12/01 14:04:47 by AleXwern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int main(void)
+#include "catch_amalgamated.hpp"
+#include "mastermind.hpp"
+
+TEST_CASE("noneMatch", "[require]")
 {
-    return 0;
+    Mastermind game;
+    REQUIRE(1);
 }
