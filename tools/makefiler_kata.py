@@ -6,7 +6,7 @@
 #    By: AleXwern <alex.nystrom5@gmail.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/12 09:09:34 by alexwern          #+#    #+#              #
-#    Updated: 2022/11/21 14:22:54 by AleXwern         ###   ########.fr        #
+#    Updated: 2022/12/13 14:20:06 by AleXwern         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,8 @@ def create_sub_makefile(name):
 		gcc = 'gcc'
 	files = ''
 	for src in os.walk('./{}/src'.format(name)).next()[2]:
-		files += src + ' '
+		if not '_old' in src:
+			files += src + ' '
 	makefile = open("{0}/../{1}/Makefile".format(sys.path[0], name), "w")
 	makefile.write(sub.format(name, files, ext, gcc))
 	makefile.close()
