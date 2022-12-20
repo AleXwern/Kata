@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: AleXwern <alex.nystrom5@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/14 10:35:52 by AleXwern          #+#    #+#             */
-/*   Updated: 2022/12/20 13:57:17 by AleXwern         ###   ########.fr       */
+/*   Created: 2022/11/22 10:11:29 by AleXwern          #+#    #+#             */
+/*   Updated: 2022/12/14 10:29:46 by AleXwern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,29 @@ void    Mastermind::generateAttempt(char c1, char c2, char c3,char c4)
 
 void    Mastermind::evaluate(Mastermind attempt)
 {
-	uint32_t places = (this->bits & attempt.bits);
-	uint32_t colors = 0;
-	this->correctPlaces = ft_popcnt(places);
-	for (int i = 8; i < 32; i += 8)
-		colors |= places ^ (this->bits & ft_rotate_right(attempt.bits ^ places, i));
-	this->correctColors = ft_popcnt((colors | places) ^ places);
+	bool    searchedSlots[4] = {0, 0, 0, 0};
+	
+	correctColors = 0;
+	correctPlaces = 0;
+	for (int i = 0; i < 4; i++)
+	{
+		if (this->colours[i] == attempt.colours[i])
+		{
+			correctPlaces++;
+			searchedSlots[i] = true;
+		}
+		else
+		{
+			for (int c = 0; c < 4; c++)
+			{
+				bool search = ((this->colours[c] == attempt.colours[i]) && !searchedSlots[c]);
+				correctColors += search;
+				searchedSlots[c] |= search;
+				if (search)
+					break;
+			}
+		}
+	}
 }
 
 int8_t	Mastermind::getColors(void) const

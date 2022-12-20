@@ -6,7 +6,7 @@
 /*   By: AleXwern <alex.nystrom5@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 09:45:20 by AleXwern          #+#    #+#             */
-/*   Updated: 2022/12/12 09:16:08 by AleXwern         ###   ########.fr       */
+/*   Updated: 2022/12/20 12:01:00 by AleXwern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,25 @@ const int COLOUR_AMOUNT = 4;
 
 enum
 {
-	empty,
-	red,
-	green,
-	blue,
-	yellow,
-	purple,
-	magenta,
-	orange,
-	black,
-	white
+	empty	= 0,
+	red		= 1,
+	green	= 2,
+	blue	= 4,
+	yellow	= 8,
+	purple	= 16,
+	magenta	= 32,
+	black	= 64,
+	white	= 128
 };
 
 class	Mastermind
 {
 private:
-	uint8_t	colours[COLOUR_AMOUNT];
+	union
+	{
+		uint8_t		colours[COLOUR_AMOUNT];
+		uint32_t	bits;
+	};
 	int8_t	correctColors;
 	int8_t	correctPlaces;
 public:
