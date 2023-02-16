@@ -6,7 +6,7 @@
 /*   By: AleXwern <alex.nystrom5@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 09:45:20 by AleXwern          #+#    #+#             */
-/*   Updated: 2022/12/20 12:01:00 by AleXwern         ###   ########.fr       */
+/*   Updated: 2023/01/19 14:53:18 by AleXwern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,16 @@
 #include <iostream>
 #include <string>
 #include "libft.h"
+
+#ifndef	BITFIELD_SIZE
+#define	BITFIELD_SIZE	32
+#endif
+
+#if BITFIELD_SIZE == 64
+#define rotate_left __builtin_rotateleft64
+#elif BITFIELD_SIZE == 32
+#define rotate_left __builtin_rotateleft32
+#endif
 
 const int COLOUR_AMOUNT = 4;
 
