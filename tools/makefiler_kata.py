@@ -6,7 +6,7 @@
 #    By: AleXwern <alex.nystrom5@gmail.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/12 09:09:34 by alexwern          #+#    #+#              #
-#    Updated: 2022/12/13 14:20:06 by AleXwern         ###   ########.fr        #
+#    Updated: 2023/02/16 13:58:11 by AleXwern         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,9 @@ def create_main_makefile():
 	builds = ''
 	for build in projects:
 		builds += '	@g++ $(FLAG) -o build/{0}_test.exe $(INCLS) obj/{0}_test.o {0}/obj/{0}.o $(CATCH) $(LIBFT)\n'.format(build)
+		builds += '	@echo \"{0}_test.exe\"\n'.format(build)
+		builds += '	@./build/{0}_test.exe\n'.format(build)
+	builds += '	@echo \"All done!\"'
 	cleans = ''
 	for clean in projects:
 		cleans += '	@make -C {0} clean\n'.format(clean)
