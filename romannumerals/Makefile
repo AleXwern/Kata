@@ -15,7 +15,8 @@ NAME	= romannumerals.exe
 FLAG	= -m64 -no-pie -Wall -Wextra -Werror
 SRCFILE	= main.c romannumerals.c rtoi.c 
 OBJ		= $(addprefix ./obj/,$(SRCFILE:.c=.o))
-LIBFT	= -L ../Libft/build -lft -lfmt
+LIBFT	= -L ../Libft/build -lft
+# -lfmt
 INCLS	= -I ./includes -I ../Libft/includes -I ./tests
 GREEN	= \033[0;32m
 PURPLE	= \033[0;35m

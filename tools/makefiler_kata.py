@@ -26,7 +26,7 @@ def create_main_makefile():
 		srcs += src + '_test.cpp '
 	includes = ''
 	for include in projects:
-		includes += '-I ' + include + '/includes '
+		includes += '-I ' + './' + include + '/includes '
 	subprojects = ''
 	for subproject in projects:
 		subprojects += '	@make -C ' + subproject + ' all\n'
@@ -47,14 +47,14 @@ def create_main_makefile():
 	makefile.close()
 
 def create_sub_makefile(name):
-	if '.cpp' in os.walk('./{}/src'.format(name)).next()[2][0]:
+	if '.cpp' in os.walk('./{}/src'.format(name)).__next__()[2][0]:
 		ext = '.cpp'
 		gcc = 'g++'
 	else:
 		ext = '.c'
 		gcc = 'gcc'
 	files = ''
-	for src in os.walk('./{}/src'.format(name)).next()[2]:
+	for src in os.walk('./{}/src'.format(name)).__next__()[2]:
 		if not '_old' in src:
 			files += src + ' '
 	makefile = open("{0}/../{1}/Makefile".format(sys.path[0], name), "w")

@@ -1,25 +1,25 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    katatop                                            :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: AleXwern <alex.nystrom5@gmail.com>         +#+  +:+       +#+         #
+#    By: alexwern <alexwern@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/01 10:42:05 by alexwern          #+#    #+#              #
-#    Updated: 2022/11/21 14:18:45 by AleXwern         ###   ########.fr        #
+#    Updated: 2024/06/17 10:29:52 by alexwern         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= kata
-TESTS	= wordwrap_test.exe romannumerals_test.exe queue_test.exe primefactors_test.exe mastermind_test.exe sort_test.exe 
-FLAG	= -m64 -no-pie -Wall -Wextra -Werror -std=c++17 -g
-SRCFILE	= wordwrap_test.cpp romannumerals_test.cpp queue_test.cpp primefactors_test.cpp mastermind_test.cpp sort_test.cpp 
-REALMAIN= obj/main.o
+TESTS	= buffer_test.exe 
+FLAG	= -m64 -no-pie -std=c++17 -g
+SRCFILE	= buffer_test.cpp 
+REALMAIN= ./obj/main.o
 TEST	= $(addprefix ./build/,$(TESTS))
 OBJ		= $(addprefix ./obj/,$(SRCFILE:.cpp=.o))
-CATCH	= obj/catch_amalgamated.o
+CATCH	= ./obj/catch_amalgamated.o
 LIBFT	= -L ./Libft/build -lft
-INCLS	= -I ./includes -I Libft/includes -I ./tests -I wordwrap/includes -I romannumerals/includes -I queue/includes -I primefactors/includes -I mastermind/includes -I sort/includes -I catch2/extras
+INCLS	= -I ./includes -I ./Libft/includes -I ./tests -I ./buffer/includes -I ./catch2/extras
 GREEN	= \033[0;32m
 PURPLE	= \033[0;35m
 STOP	= \033[0m
@@ -48,54 +48,24 @@ $(LIBFT):
 	@make -C Libft
 
 katas:
-	@make -C wordwrap all
-	@make -C romannumerals all
-	@make -C queue all
-	@make -C primefactors all
-	@make -C mastermind all
-	@make -C sort all
+	@make -C buffer all
 
 $(NAME): $(LIBFT) $(CATCH) $(OBJ) katas
 	@echo "Building unit tests"
 	@mkdir -p build
-	@g++ $(FLAG) -o build/wordwrap_test.exe $(INCLS) obj/wordwrap_test.o wordwrap/obj/wordwrap.o $(CATCH) $(LIBFT)
-	@echo "wordwrap_test.exe"
-	@./build/wordwrap_test.exe
-	@g++ $(FLAG) -o build/romannumerals_test.exe $(INCLS) obj/romannumerals_test.o romannumerals/obj/romannumerals.o $(CATCH) $(LIBFT)
-	@echo "romannumerals_test.exe"
-	@./build/romannumerals_test.exe
-	@g++ $(FLAG) -o build/queue_test.exe $(INCLS) obj/queue_test.o queue/obj/queue.o $(CATCH) $(LIBFT)
-	@echo "queue_test.exe"
-	@./build/queue_test.exe
-	@g++ $(FLAG) -o build/primefactors_test.exe $(INCLS) obj/primefactors_test.o primefactors/obj/primefactors.o $(CATCH) $(LIBFT)
-	@echo "primefactors_test.exe"
-	@./build/primefactors_test.exe
-	@g++ $(FLAG) -o build/mastermind_test.exe $(INCLS) obj/mastermind_test.o mastermind/obj/mastermind.o $(CATCH) $(LIBFT)
-	@echo "mastermind_test.exe"
-	@./build/mastermind_test.exe
-	@g++ $(FLAG) -o build/sort_test.exe $(INCLS) obj/sort_test.o sort/obj/sort.o $(CATCH) $(LIBFT)
-	@echo "sort_test.exe"
-	@./build/sort_test.exe
+	g++ $(FLAG) -o ./build/buffer_test.exe $(INCLS) ./buffer/obj/buffer.o ./obj/buffer_test.o $(CATCH) $(LIBFT)
+	@echo "buffer_test.exe"
+	@./build/buffer_test.exe
 	@echo "All done!"
 clean:
 	@/bin/rm -f $(OBJ)
 	@/bin/rm -rf ./obj
 	@make -C Libft clean
-	@make -C wordwrap clean
-	@make -C romannumerals clean
-	@make -C queue clean
-	@make -C primefactors clean
-	@make -C mastermind clean
-	@make -C sort clean
+	@make -C buffer clean
 
 fclean: clean
 	@/bin/rm -rf ./build
 	@make -C Libft fclean
-	@make -C wordwrap fclean
-	@make -C romannumerals fclean
-	@make -C queue fclean
-	@make -C primefactors fclean
-	@make -C mastermind fclean
-	@make -C sort fclean
+	@make -C buffer fclean
 
 re: fclean all
